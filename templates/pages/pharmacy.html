@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section>
+        <div
+          class="background-pharmacy"
+          style="background-image:url(https://colorlib.com/preview/theme/remedic/images/bg_1.jpg)"
+        >
+          <div class="py-5">
+            <div class="container">
+              <h1 class="display-5 text-light p-2 my-5 bg-primary1 d-inline">
+                Pharmacy
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section class="bg-light2">
+        <div class="container py-5 text-center">
+          <h1 class="filter">Filter Medicines</h1>
+        </div>
+        <div class="container pb-5">
+          <form action="#">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input
+                  type="text"
+                  name="keywords"
+                  class="form-control"
+                  placeholder="Keyword (pain, cold, etc)"
+                />
+              </div>
+  
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Name</label>
+                <input
+                  type="text"
+                  name="med-name"
+                  class="form-control"
+                  placeholder="Name"
+                />
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Max Price</label>
+                <input
+                  type="number"
+                  name="max-price"
+                  class="form-control"
+                  placeholder="Max Price"
+                />
+              </div>
+            </div>
+  
+            <button
+              class="btn bg-primary1 text-light btn-block mt-4"
+              type="submit"
+            >
+              Submit form
+            </button>
+          </form>
+        </div>
+      </section>
+  
+      <section class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img
+                  class="card-img-top"
+                  src="https://lh3.googleusercontent.com/OACtHZY-eDew1SfenP9u4xnNTU8fjPAWhcVLNZJlgLlfmb-LnYvfRQRnMKKvn1E376uDKNHO_SOotXlnFy_N7ek"
+                  alt=""
+                />
+                <div class="card-img-overlay">
+                  <h2><span class="badge bg-primary1 text-white">$50 </span></h2>
+                </div>
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="">Medicine Name</h4>
+                    <p>Medicine Type</p>
+                  </div>
+                  <hr />
+                  <div class="text-center">
+                    <p>
+                      Medicine Info Lorem ipsum dolor sit amet consectetur
+                      adipisicing elit. Dolor, laboriosam!
+                    </p>
+                  </div>
+                  <div class="row py-2 text-primary1">
+                    <div class="col-12">
+                      <i class="fas fa-hashtag"></i> Quantity Left: 10
+                    </div>
+                  </div>
+                  <hr />
+                  <a href="#" class="btn text-light bg-primary1 btn-block"
+                    >Buy Now</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+
+{% endblock %}
