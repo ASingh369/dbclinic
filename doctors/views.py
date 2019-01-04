@@ -1,7 +1,12 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from .models import Doctor
 
 
 def doctors(request):
-    return render(request, 'doctor/doctors.html')
+    doctors = Doctor.objects.all()
+
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'doctor/doctors.html', context)

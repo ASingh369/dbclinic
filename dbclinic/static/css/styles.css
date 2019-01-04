@@ -74,3 +74,11 @@
 .filter {
   font-weight: 300;
 }
+
+.medicineImage{
+  max-height: 250px; 
+}
+
+.min-height{
+  min-height: 90px;
+}

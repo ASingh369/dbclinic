@@ -62,19 +62,48 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-3">
-          <a class="nav-link" href="register.html">
-            <i class="fas fa-user-plus res-nav"></i>
-            <span class="res-nav">Register</span></a
-          >
-        </li>
-        <li class="nav-item mr-3">
-          <a class="nav-link" href="login.html">
-            <i class="fas fa-sign-in-alt res-nav"></i>
+        {% if user.is_authenticated %}
+          <li class="nav-item mr-3
+            {% if 'register' in request.path %}
+              active
+            {% endif %}
+          ">
+            <a class="nav-link" href="{% url 'index' %}">
+              <span class="res-nav">Welcome {{ user.username }} (home) </span></a
+            >
+          </li>
+          <li class="nav-item mr-3">
+            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+            <form action="{% url 'logout' %}" method="POST" id="logout">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item mr-3
+            {% if 'register' in request.path %}
+              active
+            {% endif %}
+          ">
+            <a class="nav-link" href="{% url 'register' %}">
+              <i class="fas fa-user-plus res-nav"></i>
+              <span class="res-nav">Register</span></a
+            >
+          </li>
+          <li class="nav-item mr-3
+              {% if 'login' in request.path %}
+                active
+              {% endif %}
+          ">
+            <a class="nav-link" href="{% url 'login' %}">
+              <i class="fas fa-sign-in-alt res-nav"></i>
 
-            <span class="res-nav">Login</span></a
-          >
-        </li>
+              <span class="res-nav">Login</span></a
+            >
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>

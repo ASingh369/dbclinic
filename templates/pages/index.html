@@ -3,6 +3,7 @@
   class="background_image"
   style="background-image:url({% static 'img/landing.jpg' %})"
 >
+  {% include 'partials/_alerts.html' %}
   <div class="container text-light pt-3">
     <h1 class="display-4 mt-5 pt-5 text-center">
       We Care for Your Health Every Moment
@@ -91,69 +92,38 @@
   <div class="container">
     <h2 class="display-5 text-center my-5 py-4">Recently Added Medicines</h2>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card listing-preview">
-          <img
-            class="card-img-top"
-            src="https://source.unsplash.com/random/300x200"
-            alt=""
-          />
-          <div class="card-img-overlay">
-            <h4 class="card-title text-light bg-primary1 d-inline px-2">$15</h4>
+      {% if newMedicines %}
+        {% for newMed in newMedicines %}
+          <div class="col-md-4">
+            <div class="card listing-preview">
+              <img
+                class="card-img-top medicineImage"
+                src="{{ newMed.medImage.url }}"
+                alt=""
+              />
+              <div class="card-img-overlay">
+                <h4 class="card-title text-light bg-primary1 d-inline px-2">${{ newMed.medCost }}</h4>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title text-center">{{ newMed.medName }}</h4>
+                <div class="text-primary1">
+                  <i class="fas fa-clock"></i> {{ newMed.medDate | timesince }}
+                </div>
+                <hr />
+                <a
+                  class="btn bg-primary1 text-light btn-block"
+                  href="https://www.google.com/"
+                  >Purchase Medicine</a
+                >
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <h4 class="card-title text-center">Medicine Name</h4>
-            <hr />
-            <a
-              class="btn bg-primary1 text-light btn-block"
-              href="https://www.google.com/"
-              >Purchase Medicine</a
-            >
-          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12">
+          <p class="text-center">No Medicines Available</p>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card listing-preview">
-          <img
-            class="card-img-top"
-            src="https://source.unsplash.com/random/300x200"
-            alt=""
-          />
-          <div class="card-img-overlay">
-            <h4 class="card-title text-light bg-primary1 d-inline px-2">$15</h4>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title text-center">Medicine Name</h4>
-            <hr />
-            <a
-              class="btn bg-primary1 text-light btn-block"
-              href="https://www.google.com/"
-              >Purchase Medicine</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card listing-preview">
-          <img
-            class="card-img-top"
-            src="https://source.unsplash.com/random/300x200"
-            alt=""
-          />
-          <div class="card-img-overlay">
-            <h4 class="card-title text-light bg-primary1 d-inline px-2">$15</h4>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title text-center">Medicine Name</h4>
-            <hr />
-            <a
-              class="btn bg-primary1 text-light btn-block"
-              href="https://www.google.com/"
-              >Purchase Medicine</a
-            >
-          </div>
-        </div>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -173,6 +143,7 @@
             <div class="py-3 px-1">
               <div class="bg-light p-3 overlay-light text-center">
                 <img
+                  class="min-height"
                   src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon1.png"
                   alt=""
                 />
@@ -185,10 +156,11 @@
             <div class="py-3 px-1">
               <div class="bg-light p-3 overlay-light text-center">
                 <img
-                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon1.png"
+                  class="min-height"
+                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon2.png"
                   alt=""
                 />
-                <h3 class="text-dark">Cardiology</h3>
+                <h3 class="text-dark">Urology</h3>
                 <p class="lead text-dark">Doc Name</p>
               </div>
             </div>
@@ -197,10 +169,11 @@
             <div class="py-3 px-1">
               <div class="bg-light p-3 overlay-light text-center">
                 <img
-                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon1.png"
+                  class="min-height"
+                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon3.png"
                   alt=""
                 />
-                <h3 class="text-dark">Cardiology</h3>
+                <h3 class="text-dark">Dental Care</h3>
                 <p class="lead text-dark">Doc Name</p>
               </div>
             </div>
@@ -209,10 +182,11 @@
             <div class="py-3 px-1">
               <div class="bg-light p-3 overlay-light text-center">
                 <img
-                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon1.png"
+                  class="min-height"
+                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon4.png"
                   alt=""
                 />
-                <h3 class="text-dark">Cardiology</h3>
+                <h3 class="text-dark">Eye Care</h3>
                 <p class="lead text-dark">Doc Name</p>
               </div>
             </div>
@@ -221,10 +195,11 @@
             <div class="py-3 px-1">
               <div class="bg-light p-3 overlay-light text-center">
                 <img
-                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon1.png"
+                  class="min-height"
+                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon5.png"
                   alt=""
                 />
-                <h3 class="text-dark">Cardiology</h3>
+                <h3 class="text-dark">Neurology</h3>
                 <p class="lead text-dark">Doc Name</p>
               </div>
             </div>
@@ -233,10 +208,11 @@
             <div class="py-3 px-1">
               <div class="bg-light p-3 overlay-light text-center">
                 <img
-                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon1.png"
+                  class="min-height"
+                  src="https://colorlib.com/preview/theme/medicare2/img/department/d-icon6.png"
                   alt=""
                 />
-                <h3 class="text-dark">Cardiology</h3>
+                <h3 class="text-dark">Plastic Surgery</h3>
                 <p class="lead text-dark">Doc Name</p>
               </div>
             </div>
