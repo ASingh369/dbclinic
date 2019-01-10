@@ -14,3 +14,12 @@ class Medicine(models.Model):
     def __str__(self):
         return self.medName
 
+class Order(models.Model):
+    medicine = models.ForeignKey(Medicine, on_delete=models.DO_NOTHING)
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=100)
+    quantity = models.IntegerField()
+    order_date = models.DateTimeField(default=datetime.now, blank=True)
+    user_id = models.IntegerField(blank=True)
+    def __str__(self):
+        return self.name

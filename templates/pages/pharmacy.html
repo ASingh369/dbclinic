@@ -80,7 +80,7 @@
                       alt=""
                     />
                     <div class="card-img-overlay">
-                      <h2><span class="badge bg-primary1 text-white">${{ medicine.medCost }} </span></h2>
+                      <h2><span class="badge bg-dark text-primary1">${{ medicine.medCost }} </span></h2>
                     </div>
                     <div class="card-body">
                       <div class="listing-heading text-center">
@@ -88,20 +88,65 @@
                         <p>{{ medicine.medType }}</p>
                       </div>
                       <hr />
-                      <div class="text-center">
-                        <p>
-                          {{ medicine.medInfo }}
-                        </p>
+                      <div class="card" style="border: none;">
+                          <button class="btn btn-link d-inline text-dark" style="text-align: left; text-decoration: underline;" data-toggle="collapse" data-target="#collapse-btn-{{ medicine.id }}"> <i> Read Medicine info... </i></button>
+                          <div class="collapse" id="collapse-btn-{{ medicine.id }}">
+                              {{ medicine.medInfo }}
+                          </div>
                       </div>
+                        
                       <div class="row py-2 text-primary1">
                         <div class="col-12">
                           <i class="fas fa-hashtag"></i> Quantity Left: {{ medicine.medQuantity }}
                         </div>
                       </div>
                       <hr />
-                      <a href="#" class="btn text-light bg-primary1 btn-block"
-                        >Buy Now</a
-                      >
+                      <div class="card">
+                      <button class="btn text-light bg-primary1 btn-block" data-toggle="modal" data-target="#orderModal{{ medicine.id }}">Order Medicine</button>
+                      <div class="modal fade" id="orderModal{{ medicine.id }}" role="dialog">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="inquiryModalLabel">Order Medicine</h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                  <span>&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                            <!-- Medicine form -->
+                            
+                                <form>
+                                  <div class="form-group">
+                                    <label for="property_name" class="col-form-label">Medicine:</label>
+                                    <input type="text" name="medicine" class="form-control" value="{{ medicine.medName }}" disabled>
+                                  </div>
+                                  <div class="form-group mb-0">
+                                    <label for="name" class="col-form-label">Name:</label>
+                                    <input type="text" name="name" class="form-control" required>
+                                  </div>
+                                  <div class="form-group mb-4">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                  </div>
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Quantity</span>
+                                    </div>
+                                    <input type="number" name="quantity" value="1" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="message" class="col-form-label">Message:</label>
+                                    <textarea name="message" class="form-control"></textarea>
+                                  </div>
+                                  <hr>
+                                  <input type="submit" value="Confirm Order" class="btn btn-block text-light bg-primary1">
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -150,9 +195,7 @@
               {% endif %}
             </div>
           </div>
-
         </div>
       </section>
-  
 
 {% endblock %}

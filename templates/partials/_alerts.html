@@ -10,7 +10,7 @@
                     {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                         Error:
                     {% else %}
-                        {{ message.tags|title }}
+                        {{ message.tags|title }}:
                     {% endif %}
                     {{ message }}
                 </strong>

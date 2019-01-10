@@ -75,10 +75,27 @@
   font-weight: 300;
 }
 
-.medicineImage{
-  max-height: 250px; 
+.medicineImage {
+  max-height: 250px;
 }
 
-.min-height{
+.min-height {
   min-height: 90px;
+}
+
+.doctor-main-heading {
+  padding-bottom: 0.4em;
+  border-bottom-style: double;
+  border-bottom-width: 4px;
+  font-size: 1.6em;
+  line-height: 1.5em;
+  font-weight: 300;
+  margin: 0 0 1em 0;
+  text-transform: uppercase;
+}
+
+.doc-image {
+  max-height: 380px;
+  max-width: 370px;
+  height: 100%;
 }

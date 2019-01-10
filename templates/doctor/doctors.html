@@ -41,7 +41,7 @@
                     <div
                       class="card-img-overlay d-flex flex-column-reverse text-light"
                     >
-                      <a href="#" class="btn bg-primary1 text-light">View More</a>
+                      <a href="{% url 'doctor' doctor.docName %}" class="btn bg-primary1 text-light">View More</a>
                       <h4 class="card-title">{{ doctor.docType }}</h4>
                       <p class="card-text">
                         <small class="text-light">{{ doctor.docName }}</small>
