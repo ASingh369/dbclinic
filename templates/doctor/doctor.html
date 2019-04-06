@@ -20,10 +20,10 @@
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.html" class="text-dark">Home</a>
+                <a href="{% url 'index' %}" class="text-dark">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="listings.html" class="text-dark">Doctors</a>
+                <a href="{% url 'doctors' %}" class="text-dark">Doctors</a>
               </li>
               <li class="breadcrumb-item active">{{ doctor.docName }}</li>
             </ol>
@@ -54,16 +54,24 @@
                       <p><i class="fas fa-calendar-day"></i> Day: {{ item.appointment_date | date:"l" }}</p>
                       <p><i class="fas fa-check"></i> Available: {% if item.booked %} Already Booked{% else %} Spot Available {% endif %}</p>
 
-                      <form action="{% url 'doctor' doctor.docName %}" method="POST" onsubmit="return confirm('Do you really want to book an appointment?');">
+                      <form action="{% url 'book_appointment' %}" method="POST">
                         {% csrf_token %}
-                        {% if user.is_authenticated %}
+                        <input type="hidden" value="{{ doctor.docName }}" name="doc_name">
+                        {% if request.user.is_authenticated %}
                           <input type="hidden" name="user_id" value="{{ user.id }}">
                         {% endif %}
                           <input type="hidden" name="schedule_id" value="{{ item.id }}">
                         {% if item.booked %}
                           <input type="submit" class="btn btn-outline-danger disabled" disabled="disabled" value="Book Appointment">
                         {% else %}
-                          <input type="submit" class="btn btn-outline-success" value="Book Appointment">
+                          {% if request.user.is_authenticated %}
+                            <input type="submit" class="btn btn-outline-success" value="Book Appointment">
+                          {% else %}
+                            <!-- DISMISSIBLE POPOVER -->
+                            <button type="button" id="please-login" class="btn btn-outline-dark" data-toggle="popover" data-placement="top" data-content="You need to be logged in to book an appointment" data-trigger="focus">
+                              Book Appointment
+                            </button>
+                          {% endif %}
                         {% endif %}
                       </form> 
                     </div>

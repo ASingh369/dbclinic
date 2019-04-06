@@ -11,11 +11,12 @@ def doctors(request):
     }
     return render(request, 'doctor/doctors.html', context)
 
-
-def doctor(request, doctor_name):
+def book_appointment(request):
+    print("please be here")
     if request.method == 'POST':
         user_id = request.POST['user_id']
         schedule_id = request.POST['schedule_id']
+        doc_name = request.POST['doc_name']
         schedule = Schedule.objects.get(id=schedule_id)
         if schedule.booked:
             messages.error(request, 'Appointment already booked')
@@ -26,7 +27,12 @@ def doctor(request, doctor_name):
             schedule.booked = True
             schedule.save()
             messages.success(request, 'Your appointment have been booked successfully')
-            
+    print("here")
+    return redirect('doctor', doc_name)
+
+
+def doctor(request, doctor_name):
+    print("in doctor")    
     doctor = get_object_or_404(Doctor, docName=doctor_name)
     schedule = Schedule.objects.filter(doctor=doctor.id)
     context = {

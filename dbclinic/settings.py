@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'dbclinic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'clinic',
-        'USER': 'postgres',
-        'PASSWORD': 'Hazard10',
+        'NAME': 'database_name',
+        'USER': 'database_user',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '5433'
+        'PORT': 'port_number (eg: 5432)'
     }
 }
 
@@ -141,3 +141,9 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

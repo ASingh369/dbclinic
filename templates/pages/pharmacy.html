@@ -115,8 +115,9 @@
                               <div class="modal-body">
 
                             <!-- Medicine form -->
-                            
-                                <form>
+
+                                <form action="{% url 'pharmacy' %}" method="POST">
+                                  {% csrf_token %}
                                   <div class="form-group">
                                     <label for="property_name" class="col-form-label">Medicine:</label>
                                     <input type="text" name="medicine" class="form-control" value="{{ medicine.medName }}" disabled>

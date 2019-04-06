@@ -21,6 +21,9 @@ def about(request):
 
 def pharmacy(request):
     # All Medicines 
+    if request.method == 'POST':
+        print("Ok now make this work")
+
     queryset_list = Medicine.objects.order_by('medName')
 
     # filter by keywords
