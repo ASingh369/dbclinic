@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.contrib import messages, auth
 
-from .models import Medicine
+from .models import Medicine, Order
 
 
 def index(request):
@@ -18,12 +19,28 @@ def index(request):
 def about(request):
     return render(request, 'pages/about.html')
 
+def order_medicine(request):
+    if request.method == 'POST':
+        med_id = request.POST['med_id']
+        name = request.POST['name']
+        email = request.POST['email']
+        quantity = int(request.POST['quantity'])
+        user_id = request.POST['user_id']
+
+        medicine = Medicine.objects.get(id=med_id)
+
+        medicine.medQuantity = medicine.medQuantity - quantity
+        medicine.save()
+        
+        order = Order(medicine=medicine, name=name, email=email, quantity=quantity, user_id=user_id)
+
+        order.save()
+        messages.success(request, 'Your order was placed successfully! You can pick it up whenever you visit our clinic')
+
+    return redirect('pharmacy')
 
 def pharmacy(request):
     # All Medicines 
-    if request.method == 'POST':
-        print("Ok now make this work")
-
     queryset_list = Medicine.objects.order_by('medName')
 
     # filter by keywords
