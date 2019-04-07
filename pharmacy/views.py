@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 
 from .models import Medicine, Order, Contact
 
+from pages.views import update_schedules
+
 
 def order_medicine(request):
     if request.method == 'POST':
@@ -29,6 +31,8 @@ def order_medicine(request):
     return redirect('pharmacy')
 
 def pharmacy(request):
+    update_schedules()
+    
     # All Medicines 
     queryset_list = Medicine.objects.order_by('medName')
 

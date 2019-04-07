@@ -2,8 +2,11 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .models import Doctor, Schedule, Appointment
 from django.contrib.auth.models import User
+from pages.views import update_schedules
 
 def doctors(request):
+    update_schedules()
+
     doctors = Doctor.objects.all()
 
     context = {
@@ -31,6 +34,8 @@ def book_appointment(request):
 
 
 def doctor(request, doctor_name):
+    update_schedules()
+
     doctor = get_object_or_404(Doctor, docName=doctor_name)
     schedule = Schedule.objects.filter(doctor=doctor.id).order_by('appointment_date')
     context = {

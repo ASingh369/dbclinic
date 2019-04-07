@@ -32,6 +32,8 @@ def index(request):
 
 
 def contact(request):
+    update_schedules()
+
     return render(request, 'pages/contact.html')
 
 def send_message(request):
