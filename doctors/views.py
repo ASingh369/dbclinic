@@ -27,14 +27,12 @@ def book_appointment(request):
             schedule.booked = True
             schedule.save()
             messages.success(request, 'Your appointment have been booked successfully')
-    print("here")
     return redirect('doctor', doc_name)
 
 
 def doctor(request, doctor_name):
-    print("in doctor")    
     doctor = get_object_or_404(Doctor, docName=doctor_name)
-    schedule = Schedule.objects.filter(doctor=doctor.id)
+    schedule = Schedule.objects.filter(doctor=doctor.id).order_by('appointment_date')
     context = {
         'doctor': doctor,
         'schedule': schedule
