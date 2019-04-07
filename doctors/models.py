@@ -23,7 +23,5 @@ class Schedule(models.Model):
 class Appointment(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    # def __str__(self):
-    #     return self.id
-
+    
 

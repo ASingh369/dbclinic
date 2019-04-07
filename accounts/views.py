@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from pharmacy.models import Order
+from doctors.models import Appointment, Schedule
+from datetime import datetime
 
 def register(request):
     if request.method == 'POST':
@@ -60,4 +63,33 @@ def logout(request):
     return redirect('index')
 
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    if not request.user.is_authenticated:
+        return redirect('index')
+
+    # user's appointments
+    user_appointments = Appointment.objects.filter(user=request.user, schedule__appointment_date__gt=datetime.now()).order_by('-schedule__appointment_date')
+
+    
+    # user orders
+    user_orders = Order.objects.filter(user_id=request.user.id).order_by('-order_date')
+
+    context = {
+        'user_orders': user_orders,
+        'user_appointments': user_appointments,
+    }
+
+    return render(request, 'accounts/dashboard.html', context)
+
+def cancel_appointment(request):
+    if request.method == 'POST':
+        appointment_id = int(request.POST['appointment_id'])
+        appointment = Appointment.objects.get(id=appointment_id)
+        schedule = Schedule.objects.get(id=appointment.schedule.id)
+
+        appointment.delete()
+        schedule.booked = False
+
+        schedule.save()
+        messages.success(request, 'Your appointment was canceled successfully')
+
+    return redirect('dashboard')
