@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import Doctor, Schedule, Appointment
 from django.contrib.auth.models import User
 from pages.views import update_schedules
+from datetime import datetime, date, timedelta
 
 def doctors(request):
     update_schedules()
@@ -37,7 +38,15 @@ def doctor(request, doctor_name):
     update_schedules()
 
     doctor = get_object_or_404(Doctor, docName=doctor_name)
+
     schedule = Schedule.objects.filter(doctor=doctor.id).order_by('appointment_date')
+
+    # booked missed appointments
+    for single_schedule in schedule:
+        if single_schedule.appointment_date <= date.today():
+            single_schedule.booked = True
+            single_schedule.save()
+
     context = {
         'doctor': doctor,
         'schedule': schedule
