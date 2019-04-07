@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pharmacy.apps.PharmacyConfig',
+    'pages.apps.PagesConfig',
     'doctors.apps.DoctorsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',

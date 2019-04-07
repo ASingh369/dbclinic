@@ -54,27 +54,27 @@
           >
         </li>
         <li class="nav-item
-            {% if 'about' in request.path %}
+            {% if 'contact' in request.path %}
               active
             {% endif %}
         ">
-          <a class="nav-link" href="{% url 'about' %}"><span class="res-nav">Contact</span></a>
+          <a class="nav-link" href="{% url 'contact' %}"><span class="res-nav">Contact</span></a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
           <li class="nav-item mr-3
-            {% if 'register' in request.path %}
+            {% if 'dashboard' in request.path %}
               active
             {% endif %}
           ">
             <a class="nav-link" href="{% url 'index' %}">
-              <span class="res-nav">Welcome {{ user.username }} (home) </span></a
+              <span class="res-nav">Welcome {{ user.username }} (dashboard) </span></a
             >
           </li>
           <li class="nav-item mr-3">
             <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-              <i class="fas fa-sign-out-alt"></i> Logout
+              <i class="fas fa-sign-out-alt res-nav"></i><span class="res-nav"> Logout</span>
             </a>
             <form action="{% url 'logout' %}" method="POST" id="logout">
               {% csrf_token %}

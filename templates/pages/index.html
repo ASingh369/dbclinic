@@ -3,6 +3,7 @@
   class="background_image"
   style="background-image:url({% static 'img/landing.jpg' %})"
 >
+<div class="dark-overlay-index">
   {% include 'partials/_alerts.html' %}
   <div class="container text-light pt-3">
     <h1 class="display-4 mt-5 pt-5 text-center">
@@ -16,28 +17,32 @@
     </p>
   </div>
 </div>
+</div>
 
 <section>
   <div class="container">
-    <h2 class="display-5 text-center my-5 py-4">Best Selling Medicines</h2>
+    <h2 class="display-5 text-center my-5 py-4">Most Sold Medicines</h2>
     <div class="row">
       <div class="col-md-4">
         <div class="card listing-preview">
           <img
-            class="card-img-top"
-            src="https://source.unsplash.com/random/300x200"
+            class="card-img-top medicineImage"
+            src="{{ most_sold_medicines.0.medImage.url }}"
             alt=""
           />
           <div class="card-img-overlay">
-            <h4 class="card-title text-light bg-primary1 d-inline px-2">$15</h4>
+            <h4 class="card-title text-light bg-primary1 d-inline px-2">${{ most_sold_medicines.0.medCost }}</h4>
           </div>
           <div class="card-body">
-            <h4 class="card-title text-center">Medicine Name</h4>
+              <div class="text-center text-lead font-weight-bold">
+                  <i class="fas fa-hashtag"></i> 1 
+                </div>
+            <h4 class="card-title text-center">{{ most_sold_medicines.0.medName }}</h4>
             <hr />
             <a
-              class="btn bg-primary1 text-light btn-block"
-              href="https://www.google.com/"
-              >Purchase Medicine</a
+              class="btn btn-dark btn-block"
+              href="{% url 'pharmacy' %}"
+              >Pharmacy <i class="fas fa-angle-double-right"></i></a
             >
           </div>
         </div>
@@ -45,20 +50,23 @@
       <div class="col-md-4">
         <div class="card listing-preview">
           <img
-            class="card-img-top"
-            src="https://source.unsplash.com/random/300x200"
+            class="card-img-top medicineImage"
+            src="{{ most_sold_medicines.1.medImage.url }}"
             alt=""
           />
           <div class="card-img-overlay">
-            <h4 class="card-title text-light bg-primary1 d-inline px-2">$15</h4>
+            <h4 class="card-title text-light bg-primary1 d-inline px-2">${{ most_sold_medicines.1.medCost }}</h4>
           </div>
           <div class="card-body">
-            <h4 class="card-title text-center">Medicine Name</h4>
+              <div class="text-center text-lead font-weight-bold">
+                  <i class="fas fa-hashtag"></i> 2
+                </div>
+            <h4 class="card-title text-center">{{ most_sold_medicines.1.medName }}</h4>
             <hr />
             <a
-              class="btn bg-primary1 text-light btn-block"
-              href="https://www.google.com/"
-              >Purchase Medicine</a
+              class="btn btn-dark btn-block"
+              href="{% url 'pharmacy' %}"
+              >Pharmacy <i class="fas fa-angle-double-right"></i></a
             >
           </div>
         </div>
@@ -66,20 +74,23 @@
       <div class="col-md-4">
         <div class="card listing-preview">
           <img
-            class="card-img-top"
-            src="https://source.unsplash.com/random/300x200"
+            class="card-img-top medicineImage"
+            src="{{ most_sold_medicines.2.medImage.url }}"
             alt=""
           />
           <div class="card-img-overlay">
-            <h4 class="card-title text-light bg-primary1 d-inline px-2">$15</h4>
+            <h4 class="card-title text-light bg-primary1 d-inline px-2">${{ most_sold_medicines.2.medCost }} </h4>
           </div>
           <div class="card-body">
-            <h4 class="card-title text-center">Medicine Name</h4>
+            <div class="text-center text-lead font-weight-bold">
+                <i class="fas fa-hashtag"></i> 3 
+              </div>
+            <h4 class="card-title text-center">{{ most_sold_medicines.2.medName }}</h4>
             <hr />
             <a
-              class="btn bg-primary1 text-light btn-block"
-              href="https://www.google.com/"
-              >Purchase Medicine</a
+              class="btn btn-dark btn-block"
+              href="{% url 'pharmacy' %}"
+              >Pharmacy <i class="fas fa-angle-double-right"></i></a
             >
           </div>
         </div>
@@ -111,10 +122,10 @@
                 </div>
                 <hr />
                 <a
-                  class="btn bg-primary1 text-light btn-block"
-                  href="https://www.google.com/"
-                  >Purchase Medicine</a
-                >
+              class="btn btn-dark btn-block"
+              href="{% url 'pharmacy' %}"
+              >Pharmacy <i class="fas fa-angle-double-right"></i></a
+            >
               </div>
             </div>
           </div>

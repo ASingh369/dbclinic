@@ -58,3 +58,6 @@ def logout(request):
         auth.logout(request)
         messages.success(request, 'You are now logged out')
     return redirect('index')
+
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')

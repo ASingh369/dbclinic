@@ -3,21 +3,10 @@ from django.shortcuts import render, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib import messages, auth
 
-from .models import Medicine, Order
+from django.core.mail import send_mail
 
+from .models import Medicine, Order, Contact
 
-def index(request):
-    newMedicines = Medicine.objects.order_by('-medDate')[:3]
-
-    context1 = {
-        'newMedicines': newMedicines
-    }
-
-    return render(request, 'pages/index.html', context1 )
-
-
-def about(request):
-    return render(request, 'pages/about.html')
 
 def order_medicine(request):
     if request.method == 'POST':

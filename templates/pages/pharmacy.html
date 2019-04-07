@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 
 <section>
         <div
           class="background-pharmacy"
-          style="background-image:url(https://colorlib.com/preview/theme/remedic/images/bg_1.jpg)"
+          style="background-image:url({% static 'img/pharmacy.jpeg' %})"
         >
+        <div class="dark-overlay">
           <div class="py-5">
             <div class="container">
-              <h1 class="display-5 text-light p-2 my-5 bg-primary1 d-inline">
+              <h1 class="display-5 text-light p-2 my-5 d-inline">
                 Pharmacy
               </h1>
             </div>
           </div>
         </div>
+      </div>
       </section>
 
       <div class="mt-2"></div>
