@@ -1,6 +1,8 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
 
-<div class="background_image2" style="background-image: url(https://colorlib.com/preview/theme/medical/img/hero-bg.jpg);">
+<div class="background_image2" style="background-image: url({% static 'img/hero-bg.jpg' %});">
     <div class="overlay-bg py-5">
             {% include 'partials/_alerts.html' %}
         <div class="container">

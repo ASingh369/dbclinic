@@ -1,17 +1,19 @@
 {% extends 'base.html' %} 
-
+{% load static %}
 {% block content %} 
 
 <section>
         <div
           class="background-pharmacy"
-          style="background-image:url(https://colorlib.com/preview/theme/remedic/images/bg_1.jpg)"
+          style="background-image:url({% static 'img/doctors-top.jpeg' %})"
         >
+        <div class="dark-overlay">
           <div class="py-5">
             <div class="container text-center">
               <h1 class="display-5 text-light my-5 d-inline">{{ doctor.docName }} </h1>
             </div>
           </div>
+        </div>
         </div>
       </section>
   
