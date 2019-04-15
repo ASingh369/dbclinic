@@ -139,7 +139,7 @@
                                     <label for="name" class="col-form-label">Name:</label>
                                     <input type="text" name="name" class="form-control disabled" 
                                     {% if request.user.is_authenticated %}
-                                      value="{{ request.user.username }}" readonly
+                                      value="{{ request.user.username }}"
                                     {% endif %}
                                     required>
                                   </div>
